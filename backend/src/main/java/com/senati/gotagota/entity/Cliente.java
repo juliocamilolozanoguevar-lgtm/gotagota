@@ -1,30 +1,31 @@
 package com.senati.gotagota.entity;
-
-
 import jakarta.persistence.*;
-
+// @Entity le dice a Hibernate que esta clase representa una tabla en la BD
 @Entity
-
+// @Table indica el nombre exacto de tabla en MYSQL o MariaDB
 @Table(name = "cliente")
-
 public class Cliente {
-
-     @Id
+    // @Id marca este campo como la clave primaria de la tabla
+    // @GeneratedValue hace que el ID se genere automaticamente (AutoIncrement)
+    // @Column(name="cliente_id") indica el nombre exacto de la columna en mysql
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cliente_id")
     private Long id;
-
-     @Column(nullable = false)
-     private Long nombre;
-
+    // nullable=false significa que este campo no puede estar vacio en la BD
     @Column(nullable = false)
-    private Long apellido;
-
+    private String nombre;
+    @Column(nullable = false)
+    private String apellido;
+    //unique=true significa que no puede haber dos clientes con el mismo DNI
+    //length=8 significa limita el campo a 8 caracteres
     @Column(nullable = false,unique = true,length = 8)
-    private Long dni;
-
+    private String dni;
+    //Sin anotaciones ( @ ) extra: columna normal, puede ser nula
     private String telefono;
     private String direccion;
+
+    //GETTER a SETTERS
 
     public Long getId() {
         return id;
@@ -34,36 +35,28 @@ public class Cliente {
         this.id = id;
     }
 
-    public Long getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(Long nombre) {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public Long getApellido() {
+    public String getApellido() {
         return apellido;
     }
 
-    public void setApellido(Long apellido) {
+    public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
-    public Long getDni() {
+    public String getDni() {
         return dni;
     }
 
-    public void setDni(Long dni) {
+    public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
     }
 
     public String getDireccion() {
@@ -72,5 +65,13 @@ public class Cliente {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

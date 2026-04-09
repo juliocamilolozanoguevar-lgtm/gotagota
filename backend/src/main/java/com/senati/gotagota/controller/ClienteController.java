@@ -28,3 +28,4 @@ public class ClienteController {
     @GetMapping
     public List<Cliente> listar() {return clienteService.listarTodos();}
 }
+
