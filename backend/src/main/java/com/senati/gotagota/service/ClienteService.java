@@ -2,30 +2,21 @@ package com.senati.gotagota.service;
 
 import com.senati.gotagota.entity.Cliente;
 import com.senati.gotagota.repository.ClienteRepository;
-import com.senati.gotagota.service.ClienteService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
-
-//3 ANOTACIONES
-//Indica que esta clase maneja penticiones HTTPS y DEVUELVE JSON
-@RestController
-// Define la URL Base de todos los END-POINT de esta clase
-@RequestMapping("api/clientes")
-// Esta anotacion permite que el front-end pueda llammar a esta API
-// si no ponemos esto,el navegador bloquea las peticiones por politicas CORS
-@CrossOrigin(origins = "*")
-
+//Importamos la anotacion @service
+//Esto es la capa de la logica de negocio, aqui van las validaciones, calculos, etc.
+@Service
 public class ClienteService {
-    private final ClienteService clienteService;
-    public ClienteController(ClienteService clienteService){
-        this.clienteService = clienteService;
-}
-    //GET / api/clientes -> devuelve todos los clientes en formato JSON
-    @GetMapping
-    public List<Cliente>listar(){return clienteService.ListarTodos();}
-}
+    //Inyectamos el repositorio para poder acceder a la base de datos
+    private final ClienteRepository clienteRepository;
 
+    //Contructor: Spring inyecta automaticamente el repositorio(las dependencias)
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
+    }
+    //Retorna o recive la lista de todos los clientes
+    public List<Cliente> listarTodos(){
+        return clienteRepository.findAll();
+    }
+}
