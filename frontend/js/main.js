@@ -52,12 +52,21 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${cliente.dni}</td>
                         <td>${cliente.telefono}</td>
                         <td>${cliente.direccion}</td>
+                        <td>
+            <button class="btn btn-outline-primary btn-sm">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-outline-danger btn-sm">
+              <i class="fa fa-trash"></i>
+            </button>
+          </td>
                     </tr>
             `
-            elemento.innerHTML += fila;
-            console.log(cliente)
+                elemento.innerHTML += fila;
+                console.log(cliente)
             };
-             
+
         });
 });
 
