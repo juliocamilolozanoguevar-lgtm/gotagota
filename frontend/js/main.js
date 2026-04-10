@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
            });
            */
             for (let i = 0; i < data.length; i++) {
-                //data[i], muestra en forma de array
+                //data[i], muestra en forma de array    
                 let cliente = data[i]
 
                 let fila = `
