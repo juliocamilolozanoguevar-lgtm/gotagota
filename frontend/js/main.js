@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${cliente.telefono}</td>
                         <td>${cliente.direccion}</td>
                         <td>
-            <button class="btn btn-outline-primary btn-sm">
-              <i class="fa fa-edit"></i>
+            <button id="btnEditar" class="btn btn-outline-primary btn-sm">
+              <i class="fa fa-edit"></i>Editar
             </button>
 
-            <button class="btn btn-outline-danger btn-sm">
-              <i class="fa fa-trash"></i>
+            <button id="btnEliminar" class="btn btn-outline-danger btn-sm" >
+              <i class="fa fa-trash"></i>Eliminar
             </button>
           </td>
                     </tr>
@@ -69,4 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         });
 });
+
+// EVENTO DE CLICK
 
