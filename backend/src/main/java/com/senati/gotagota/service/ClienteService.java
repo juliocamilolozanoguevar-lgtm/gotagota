@@ -1,5 +1,4 @@
 package com.senati.gotagota.service;
-
 import com.senati.gotagota.entity.Cliente;
 import com.senati.gotagota.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,9 @@ public class ClienteService {
     public List<Cliente> listarTodos(){
         return clienteRepository.findAll();
     }
-    // Elimina el cliente por ID
-    public void eliminarCliente(long id){
-        clienteRepository.deleteById(id);};
+
+    //Elimina el cliente por ID
+    public void eliminarCliente(Long id) {
+        clienteRepository.deleteById(id);
+    };
 }

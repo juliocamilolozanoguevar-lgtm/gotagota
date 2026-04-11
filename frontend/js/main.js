@@ -53,11 +53,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         <td>${cliente.telefono}</td>
                         <td>${cliente.direccion}</td>
                         <td>
-            <button class="btn btn-outline-primary btn-sm" onclick="editarCliente(${cliente.id})">
+            <button class="btn btn-outline-primary btn-sm">
               <i class="fa fa-edit"></i>
             </button>
 
-            <button class="btn btn-outline-danger btn-sm" onclick="eliminarCliente(${cliente.id})">
+            <button class="btn btn-outline-danger btn-sm">
               <i class="fa fa-trash"></i>
             </button>
           </td>
