@@ -1,71 +1,86 @@
-// EVENTOS EN JAVASCRIPT (CLICK, CARGAR, KEY,)
-
+// EVENTO: CARGAR DATOS
 document.addEventListener("DOMContentLoaded", () => {
 
   fetch("http://localhost:8080/api/clientes")
     .then((response) => response.json())
     .then((data) => {
-      // DOM -> <tbody id="table-cliente">
       const elemento = document.getElementById("table-cliente");
-      for (let i = 0; i < data.length; i++) {
-        //data[i], muestra en forma de array
-        let cliente = data[i];
-        // alt + 96
+
+      data.forEach(cliente => {
         let fila = `
-                            <tr>
-                            <td>${cliente.id}</td>
-                            <td>${cliente.nombre}</td>
-                            <td>${cliente.apellido}</td>
-                            <td>${cliente.dni}</td>
-                            <td>${cliente.telefono}</td>
-                            <td>${cliente.direccion}</td>
-                            <td> 
-                                <button 
-                                    
-                                    class="btn btn-outline-primary me-2">
-                                    <i class="fas fa-edit"></i> Editar
-                                </button>
-                                <button id="btnEliminar" data-idcliente = ${cliente.id} class="btn btn-outline-danger">
-                                    <i class="fas fa-trash"></i> Eliminar
-                                </button>
-                            </td>
-                            </tr>                
-                           `;
+          <tr>
+            <td>${cliente.id}</td>
+            <td>${cliente.nombre}</td>
+            <td>${cliente.apellido}</td>
+            <td>${cliente.dni}</td>
+            <td>${cliente.telefono}</td>
+            <td>${cliente.direccion}</td>
+            <td> 
+              <button class="btn btn-outline-primary me-2">
+                <i class="fas fa-edit"></i> Editar
+              </button>
+              <button data-idcliente="${cliente.id}" class="btn btn-outline-danger btnEliminar">
+                <i class="fas fa-trash"></i> Eliminar
+              </button>
+            </td>
+          </tr>`;
+        
         elemento.innerHTML += fila;
-      }
+      });
     });
 
 });
 
-// EVENTO DE CLICK EN JAVASCRIPT
-//Creamos una variable que almacene el DOM de ese elemento del boton
+// EVENTO CLICK (ELIMINAR)
 document.addEventListener("click", function (e) {
-  const btnDelete = e.target.closest("#btnEliminar");
-  if (btnDelete) { //TRUE o 1
-    alert("Eliminando...");
-    const id = btnDelete.dataset.idcliente
+  const btnDelete = e.target.closest(".btnEliminar");
 
-    fetch("http://localhost:8080/api/clientes/" + id, {
-      method: 'DELETE'
-    })
+  if (btnDelete) {
+    const id = btnDelete.dataset.idcliente;
+
+    if (confirm("¿Seguro que deseas eliminar este cliente?")) {
+      fetch("http://localhost:8080/api/clientes/" + id, {
+        method: 'DELETE'
+      })
       .then(response => {
         if (response.ok) {
           alert('Cliente eliminado correctamente');
-          location.reload(); // Recargar la página para reflejar los cambios
+          location.reload();
         } else {
           alert('Error al eliminar el cliente');
         }
-      })
+      });
+    }
   }
 });
 
-// CREAMOS UNA FUNCION BASICA
+// FUNCIÓN GUARDAR CLIENTE
+function guardarCliente() {
+  const nombre = document.getElementById("c_nombre").value;
+  const apellido = document.getElementById("c_apellido").value;
+  const dni = document.getElementById("c_dni").value;
+  const telefono = document.getElementById("c_telefono").value;
+  const direccion = document.getElementById("c_direccion").value;
 
-
-function guardarCliente(){
-  const nombre= document.getElementById("c_nombre");
-  const apellido= document.getElementById("c_apellido");
-  const dni= document.getElementById("c_dni");
-  const telefono= document.getElementById("c_telefono");
-  const direccion= document.getElementById("c_direccion");
+  fetch("http://localhost:8080/api/clientes", {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      nombre,
+      apellido,
+      dni,
+      telefono,
+      direccion
+    })
+  })
+  .then(response => {
+    if (response.ok) {
+      alert("Cliente guardado correctamente");
+      location.reload();
+    } else {
+      alert("Error al guardar cliente");
+    }
+  });
 }
