@@ -21,12 +21,14 @@ public class ClienteController {
     public ClienteController(ClienteService clienteService){
         this.clienteService = clienteService;
     }
+
     //GET /api/clientes -> devuelve todos los clientes en formato JSON
     @GetMapping
     public List<Cliente> listar() {return clienteService.listarTodos();}
 
-    //POST /api/Clientes -> para guardar un cliente
-    @PostMapping ResponseEntity<Cliente> crear(@RequestBody Cliente cliente) {
+    //POST /api/clientes -> para guardar un cliente
+    @PostMapping
+    public ResponseEntity<Cliente> crear(@RequestBody Cliente cliente){
         return ResponseEntity.ok(clienteService.crearCliente(cliente));
     }
 
@@ -36,7 +38,6 @@ public class ClienteController {
         clienteService.eliminarCliente(id);
         return ResponseEntity.noContent().build();
     }
-
 
 
 }
