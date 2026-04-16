@@ -27,8 +27,7 @@ public class ClienteController {
 
     //POST /api/Clientes -> para guardar un cliente
     @PostMapping ResponseEntity<Cliente> crear(@RequestBody Cliente cliente) {
-
-        return ResponseEntity.ok()
+        return ResponseEntity.ok(clienteService.crearCliente(cliente));
     }
 
     //DELETE /api/clientes/{id} -> elimina un cliente por su ID
