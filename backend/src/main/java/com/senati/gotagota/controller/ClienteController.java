@@ -25,12 +25,19 @@ public class ClienteController {
     @GetMapping
     public List<Cliente> listar() {return clienteService.listarTodos();}
 
+    //POST /api/Clientes -> para guardar un cliente
+    @PostMapping ResponseEntity<Cliente> crear(@RequestBody Cliente cliente) {
+
+        return ResponseEntity.ok()
+    }
+
     //DELETE /api/clientes/{id} -> elimina un cliente por su ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id){
         clienteService.eliminarCliente(id);
         return ResponseEntity.noContent().build();
     }
+
 
 
 }
