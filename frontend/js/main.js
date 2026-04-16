@@ -20,7 +20,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${cliente.telefono}</td>
                             <td>${cliente.direccion}</td>
                             <td> 
-                                <button class="btn btn-outline-primary me-2">
+                                <button 
+                                    
+                                    class="btn btn-outline-primary me-2">
                                     <i class="fas fa-edit"></i> Editar
                                 </button>
                                 <button id="btnEliminar" data-idcliente = ${cliente.id} class="btn btn-outline-danger">
@@ -43,15 +45,27 @@ document.addEventListener("click", function (e) {
     alert("Eliminando...");
     const id = btnDelete.dataset.idcliente
 
-    fetch("http://localhost:8080/api/clientes/"+id, {
+    fetch("http://localhost:8080/api/clientes/" + id, {
       method: 'DELETE'
     })
-    .then(response => {
+      .then(response => {
         if (response.ok) {
           alert('Cliente eliminado correctamente');
           location.reload(); // Recargar la página para reflejar los cambios
         } else {
           alert('Error al eliminar el cliente');
-     }})
+        }
+      })
   }
 });
+
+// CREAMOS UNA FUNCION BASICA
+
+
+function guardarCliente(){
+  const nombre= document.getElementById("c_nombre");
+  const apellido= document.getElementById("c_apellido");
+  const dni= document.getElementById("c_dni");
+  const telefono= document.getElementById("c_telefono");
+  const direccion= document.getElementById("c_direccion");
+}
