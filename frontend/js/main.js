@@ -29,6 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
+
+    //DOM (document object model) Dar accion al boton de guardar cliente
+ const btnSaveCliente = document.getElementById("btn-crearcliente")
+ btnSaveCliente.addEventListener("click", guardarCliente);
 });
 
 // EVENTO CLICK (ELIMINAR)
@@ -76,11 +80,6 @@ function guardarCliente() {
     })
   })
   .then(response => {
-    if (response.ok) {
-      alert("Cliente guardado correctamente");
-      location.reload();
-    } else {
-      alert("Error al guardar cliente");
-    }
+    console.log(response)
   });
 }
