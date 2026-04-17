@@ -95,15 +95,20 @@ function guardarCliente() {
       alert("Error: no se pudo guardar")
     }
   });
-}   
+}
 
 // Funcion para poner los datos en el inpunt del Formulario Actualizar
-function llamardatos(){
-  const btnEditar= e.target.closet("#btnEditar");
+function llamardatos() {
+  const btnEditar = e.target.closet("#btnEditar");
   const id_cli = btnEditar.dataset.idcli;
   const nom_cli = btnEditar.dataset.nomcli;
   const apell_cli = btnEditar.dataset.apellclicli;
   const dni_cli = btnEditar.dataset.dnicli;
   const telf_cli = btnEditar.dataset.telfllcli;
   const dire_cli = btnEditar.dataset.direcli;
+  document.getElementById("c_u_nombre").value = nom_cli;
+  document.getElementById("c_u_apellido").value = apell_cli;
+  document.getElementById("c_u_dni").value = dni_cli;
+  document.getElementById("c_u_telefono").value = telf_cli;
+  document.getElementById("c_u_direccion").value = dire_cli;
 }
