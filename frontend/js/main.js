@@ -98,3 +98,12 @@ function guardarCliente() {
 }   
 
 // Funcion para poner los datos en el inpunt del Formulario Actualizar
+function llamardatos(){
+  const btnEditar= e.target.closet("#btnEditar");
+  const id_cli = btnEditar.dataset.idcli;
+  const nom_cli = btnEditar.dataset.nomcli;
+  const apell_cli = btnEditar.dataset.apellclicli;
+  const dni_cli = btnEditar.dataset.dnicli;
+  const telf_cli = btnEditar.dataset.telfllcli;
+  const dire_cli = btnEditar.dataset.direcli;
+}
