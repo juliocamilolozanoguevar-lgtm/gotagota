@@ -19,7 +19,17 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${cliente.direccion}</td>
                             <td> 
                                 <button
-                                    class="btn btn-outline-primary me-2">
+                                    class="btn btn-outline-primary me-2"
+                                    id=" btn-Editar"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalEditarCliente"
+                                    data-idcli=${cliente.id}
+                                    data-nomcli=${cliente.nombre}
+                                    data-apellcli=${cliente.apellido}
+                                    data-dnicli=${cliente.dni}
+                                    data-telfcli=${cliente.telefono}
+                                    data-direcli=${cliente.direccion}
+                                    >
                                     <i class="fas fa-edit"></i> Editar
                                 </button>
                                 <button id="btnEliminar" data-idcliente = ${cliente.id} class="btn btn-outline-danger">
@@ -86,3 +96,5 @@ function guardarCliente() {
     }
   });
 }   
+
+// Funcion para poner los datos en el inpunt del Formulario Actualizar
